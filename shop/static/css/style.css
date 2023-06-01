@@ -1,0 +1,228 @@
+/* :root{
+    --bg-color: 
+} */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Rubik:wght@400;700&display=swap');
+body{
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    
+}
+html{
+    font-family: "Quicksand", serif;
+    overflow-x: hidden;
+}
+p{
+    margin: 0;
+}
+*{
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+header .content .incontent{
+    width: 1236px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+}
+header .content .incontent .logo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 50px;
+}
+.logo img{
+    width: 325px;
+    height: auto;
+}
+.icon{
+    width: 35px;
+    margin-right: 1rem;
+    display: none;
+    border: 0;
+    background-color: #fff;
+    cursor: pointer;
+}
+.social_block{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1.5rem;
+}
+.wrapper header .content{
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 1px 6px 9px 2px rgba(0, 0, 0, 0.05);
+    /* margin-bottom: 0.2%; */
+}
+.cart{
+    padding-right: 1.5rem;
+}
+.banner{
+    width: 100vw;
+    height: 864px;
+    /* z-index: 2; */
+    /* background-image: url(/media/start.jpg); */
+}
+.banner .content{
+    width: 100%;
+    height: 100%;
+}
+.banner img{
+    height: 100%;
+    width: 100vw;
+}
+.block_nav{
+    width: 10vw;
+    height: 100vh;
+    position: fixed;
+}
+main .content{
+    width: 100vw;
+    margin-bottom: 5%;
+}
+main .content .incontent{
+    width: 100vw;
+    height: 100vh;
+    /* margin: 0 auto; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 14vw;
+}
+main .content ul{
+    list-style: none;
+    line-height: 3.5rem;
+
+}
+main .content{
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+}
+.main_nav{
+    width: 13.6vw;
+    font-size: 14px;
+    /* position: fixed; */
+    height: 100vh;
+}
+main .block{
+    width: calc(35.3333% - 2rem);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.blocks{
+    display: flex;
+    flex-direction: row;
+    width: 1236px;
+}
+main .inblock{
+    width: 100%;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+.inblock .img img{
+    width: 100%;
+    transition: 0.25s;
+    overflow: hidden;
+}
+.inblock .img img:hover{
+    transform: scale(1.1);
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    gap: 0.6rem;
+}
+footer .content .incontent .text_footer{
+    text-transform: uppercase;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
+    gap: 20px;
+}
+footer .incontent{
+    width: 1236px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+footer .content{
+    width: 100vw;
+    display: flex;
+    height: auto;
+}
+
+@media only screen and (max-width: 1250px){
+    .banner{
+        display: none;
+    }
+}
+@media only screen and (max-width: 950px){
+    .blocks{
+        /* justify-content: center; */
+        margin: 0 auto;
+        align-items: center;
+        flex-direction: row;
+    }
+    .icon{
+        display: block;
+    }
+    .block_nav{
+        display: none;
+    }
+    .wrapper .content .incontent{
+        margin: 0;
+    }
+    main .block{
+        width: calc(75% - 1rem);
+    }
+    main .content .incontent{
+        padding: 0;
+    }
+}
+@media only screen and (max-width: 576px){
+    .blocks{
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        flex-direction: column;
+    }
+    .block_nav{
+        display: none;
+    }
+    .wrapper .content .incontent{
+        margin: 0;
+        height: auto;
+    }
+    main .block{
+        width: calc(85% - 2rem);
+    }
+    main .content .incontent{
+        padding: 0;
+    }
+}

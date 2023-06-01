@@ -1,0 +1,10 @@
+@media only screen and (max-width: 1250){
+    .banner .content{
+        display: none;
+    }
+}
+@media only screen and (max-width: 950){
+    .blocks{
+        flex-direction: column;
+    }
+}

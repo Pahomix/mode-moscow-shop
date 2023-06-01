@@ -1,0 +1,71 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static "/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "/css/goods.css"%}">
+{% endblock %}
+{% block banner %}{% endblock %}
+{% block content %}
+    <div class="product">
+        <div class="product_img">
+            <img src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="product_text">
+            <div class="product_header">
+                <div class="name">
+                    {{ product.name }}
+                </div>
+                <div class="price">
+                    {{ product.price }}
+                    RUB
+                </div>
+            </div>
+            <div class="product_info">
+                {% comment %} <div class="product__size"> 
+                    <ul class="product__size__list">
+
+                        <li class="product__size__element_radio">
+                            <label class="product__size__radio" rel="tooltip" tabindex="0">
+                                <input class="product__size__input" type="radio" name="size" value="S">
+                                <span   span class="product__size__name">S</span>
+                            </label>
+                        </li>
+                        <li class="product__size__element_radio">
+                            <label class="product__size__radio" rel="tooltip" tabindex="0">
+                                <input class="product__size__input" type="radio" name="size" value="M">
+                                <span   span class="product__size__name">M</span>
+                            </label>
+                        </li>
+                        <li class="product__size__element_radio">
+                            <label class="product__size__radio" rel="tooltip" tabindex="0">
+                                <input class="product__size__input" type="radio" name="size" value="L">
+                                <span   span class="product__size__name">L</span>
+                            </label>
+                        </li>
+                        <li class="product__size__element_radio">
+                            <label class="product__size__radio" rel="tooltip" tabindex="0">
+                                <input class="product__size__input" type="radio" name="size" value="XL">
+                                <span   span class="product__size__name">XL</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div> {% endcomment %}
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    <input type="hidden" name="quantity" value="1">
+                    Размер: {{ cart_product_form.size }}
+                    {% csrf_token %}
+                    <br>
+                    <button type="submit" class="button_cart">В КОРЗИНУ</button>
+                </form>
+                
+                <div class="product_description">
+                    {{ product.description|linebreaksbr }}
+                    <br>
+                    <a href="#">Таблица размеров</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    

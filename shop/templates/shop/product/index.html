@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block links%}
+    <link rel="stylesheet" href="{% static "/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "/css/style.css"%}">
+    <link rel="stylesheet" href="{% static "/css/media.css"%}">
+{% endblock %}
+{% block content %}
+    <div class="blocks">
+        {% for product in products %}
+        <div class="block">
+            <div class="inblock">
+                <div class="img">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt=""></a>
+                </div>
+                <div class="text">
+                    <div class="name">{{ product.name }}</div>
+                    <div class="price">{{ product.price }} RUB</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}  
+    </div>
+{% endblock %}

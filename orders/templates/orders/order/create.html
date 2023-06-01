@@ -1,0 +1,41 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block links%}
+    <link rel="stylesheet" href="{% static "/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "/css/create.css"%}">
+    <link rel="stylesheet" href="{% static "/css/media.css"%}">
+
+{% endblock %}
+{% block title %}
+{% endblock %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% block banner %}{% endblock %}
+{% block content %}
+    <h1>Оформление Заказа</h1>
+    <div class="order-info">
+        <div class="order_item">
+            <h3>Ваш заказ</h3>
+            <ul>
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        <li>
+                            <img src="{{ product.image.url }}" alt="">{{ item.quantity }}x {{ item.product.name }} - 
+                            {{ item.total_price }} RUB
+                        </li>
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+                <div class="total">
+                    <p>Total: {{ cart.get_total_price }} RUB</p>
+                </div>
+        </div>
+        <div class="inorder">
+            <form method="post" class="order-form">
+                {{ form.as_p }}
+                <p><input type="submit" value="ОПЛАТИТЬ"></p>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

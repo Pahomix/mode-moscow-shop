@@ -1,0 +1,121 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static "/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "/css/cart.css"%}">
+    <link rel="stylesheet" href="{% static "/css/media.css"%}">
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }}
+    {% else %}
+        Products
+    {% endif %}
+{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+    <form class="cart">
+        <table class="cart_table">
+            <thead class="cart_title">
+                <th class="cart_product">
+                    Товар
+                </th>
+                <th class="space_center"></th>
+                <th class="cart_price">
+                    Цена
+                </th>
+                <th class="cart_quantity">
+                    Кол-во
+                </th>
+                <th class="cart_total">
+                    Итого
+                </th>
+            </thead>
+            <tbody class="cart_list">
+                {% for item in cart %}
+                    {% with product=item.product %}
+                        {% with size=item.size %}
+                            <tr class="cart_element">
+                                <td class="cart_cover">
+                                    <img src="{{ product.image.url }}" alt="">
+                                </td>
+                                <td class="cart_info">
+                                    <p>
+                                        <a href="{{ product.get_absolute_url }}" class="cart_link">{{ product.name }}</a>
+                                        <br>
+                                        Размер: {{ size.name }}
+                                    </p>
+                                </td>
+                                <td class="cart_price">
+                                    {{ item.product.price }}
+                                </td>
+                                <td class="cart_quantity">
+                                    <form action="{% url 'cart:cart_add' item.product_id %}" method="post" id="cart-update-form">
+                                        {% csrf_token %}
+                                        {{ item.quantity }}
+                                        {% comment %} <button type="submit" name="update" value="true">
+                                            <i class="fa-light fa-arrows-rotate" style="color: #000000;"></i>
+                                        </button> {% endcomment %}
+                                    </form>
+                                </td>
+                                <td class="cart_total">
+                                    {{ item.total_price }}
+                                </td>
+                                <td>
+                                    <form action="{% url 'cart:cart_remove' item.product_id item.size_id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="total_cart_remove">
+                                            <i class="fa-light fa-trash" style="color: #000000;"></i>
+                                        </button>
+                                    </form>                                    
+                                </td>
+                            </tr>
+                        {% endwith %}
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+    <div class="total">
+        <div class="content">
+            <div class="total_title">
+                ИТОГО
+            </div>
+            {% comment %} <div class="total_promo">
+                <div class="total_promo_text">
+                    Введите промокод
+                </div>
+                <div class="total_promo_form">
+                    <input class="promo_form" type="text" placeholder="Введите промокод">
+                    <button class="promo_button">Применить промокод</button>
+                </div>
+            </div>
+            <div class="total_price">
+                <div class="total_price_title">
+                    Сумма
+                </div>
+                <div class="total_price_text">
+                    {{ total_price }}
+                </div>
+            </div> {% endcomment %}
+            <div class="total_sum">
+                <div class="total_sum_title">
+                    Всего к оплате
+                </div>
+                <div class="total_sum_text">
+                    {{ total_price }}
+                </div>
+            </div>
+            <form action="{% url 'orders:order_create' %}" method="get">
+                <div class="total_button">
+                    <button class="total_cart_button">Оформление Заказа</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

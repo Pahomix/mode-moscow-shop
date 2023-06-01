@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block links%}
+    <link rel="stylesheet" href="{% static "/css/all.min.css" %}">
+    <link rel="stylesheet" href="{% static "/css/cart.css"%}">
+    <link rel="stylesheet" href="{% static "/css/media.css"%}">
+    <script src="{% static "/js/cart.js"%}"></script>
+
+{% endblock %}
+{% block title %}
+{% endblock %}
+{% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% block banner %}{% endblock %}
+{% block content %}
+    <h1>Спасибо за заказ</h1>
+    <p>Ваш заказ успешно создан. Номер Вашего заказа <strong>{{ order.id }}</strong></p>
+{% endblock %}
