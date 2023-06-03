@@ -22,6 +22,9 @@ a{
     color: black;
     text-transform: uppercase;
 }
+main{
+    font-family: 'Montserrat';
+}
 header .content .incontent{
     width: 1236px;
     display: flex;
@@ -95,7 +98,14 @@ main .content ul{
     line-height: 3.5rem;
 
 }
-
+.empty-cart{
+    font-family: 'Montserrat';
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 50px;
+    height: 100vh;
+}
 .quantity_input{
     -moz-appearance: textfield;
 }

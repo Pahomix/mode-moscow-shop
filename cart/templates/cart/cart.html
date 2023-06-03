@@ -19,7 +19,9 @@
 {% endblock %}
 
 {% block content %}
-    <form class="cart">
+    {% if cart|length == 0 %}
+        <p class="empty-cart">Корзина пуста</p>
+    {% else %}
         <table class="cart_table">
             <thead class="cart_title">
                 <th class="cart_product">
@@ -118,4 +120,6 @@
             </form>
         </div>
     </div>
+    {% endif %}
+    <form class="cart">
 {% endblock %}
