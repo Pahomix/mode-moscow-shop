@@ -197,7 +197,7 @@ li{
     font-family: 'Montserrat';
   }
 
-  .order-form input[type="submit"]{
+  .order-form button{
     background-color: #000000;
     color: white;
     padding: 10px 20px;
@@ -206,3 +206,9 @@ li{
     font-family: 'Montserrat';
     width: 100%;
   }
+
+.tinkoffPayRow{
+    display:block;
+    margin:1%;
+    width:160px;
+}

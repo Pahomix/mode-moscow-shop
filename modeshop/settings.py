@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'modeshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'modemoscow_shop',
+        'NAME': 'modeshop',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',

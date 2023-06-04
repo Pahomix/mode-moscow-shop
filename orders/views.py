@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import OrderItem, ProductSize
+from .models import OrderItem, ProductSize, Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from .tasks import order_created
+from django.views.decorators.csrf import csrf_exempt
+
 
 def order_create(request):
     cart = Cart(request)
@@ -43,3 +45,10 @@ def order_create(request):
     else:
         form = OrderCreateForm()
     return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
+
+
+@csrf_exempt
+def order_created(request):
+    order_id = request.GET.get('order_id')
+    order = Order.objects.get(id=order_id)
+    return render(request, 'orders/order/created.html', {'order': order})

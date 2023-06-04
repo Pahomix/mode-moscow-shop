@@ -31,11 +31,55 @@
                 </div>
         </div>
         <div class="inorder">
-            <form method="post" class="order-form">
-                {{ form.as_p }}
-                <p><input type="submit" value="ОПЛАТИТЬ"></p>
-                {% csrf_token %}
+            <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
+            <form name="TinkoffPayForm" class="order-form">
+                <input class="tinkoffPayRow" type="hidden" name="terminalkey" value="TinkoffBankTest">
+                <input class="tinkoffPayRow" type="hidden" name="frame" value="true">
+                <input class="tinkoffPayRow" type="hidden" name="language" value="ru"> 
+                <input class="tinkoffPayRow" type="hidden" placeholder="Сумма заказа" name="amount" value="{{ cart.get_total_price }}" required>
+                <input class="tinkoffPayRow" type="hidden" placeholder="Номер заказа" name="order" value="{{ order.id }}">
+                <input class="tinkoffPayRow" type="hidden" placeholder="Описание заказа" name="description">
+                <input class="tinkoffPayRow" type="text" placeholder="ФИО" name="name" required>
+                <input class="tinkoffPayRow" type="text" placeholder="E-mail" name="email" required>
+                <input class="tinkoffPayRow" type="text" placeholder="Контактный телефон" name="phone" required>
+                <input class="tinkoffPayRow" type="text" placeholder="Адрес" name="address" required>
+                {% comment %} <input class="tinkoffPayRow" type="text" placeholder="Телеграм" name="telegram"> {% endcomment %}
+                <input class="tinkoffPayRow" type="hidden" name="receipt" value="">
+                <input class="tinkoffPayRow" type="button" class="tink" onclick="tinkoffPayFunction(this)" value="Оплатить">
             </form>
-        </div>
+            <script type="text/javascript">
+                function tinkoffPayFunction(target) {
+                        let form = target.parentElement;
+                        let name = form.description.value || "Оплата";
+                        let amount = form.amount.value;
+                        let email = form.email.value;
+                        let phone = form.phone.value;
+                        let address = form.address.value;
+            
+                        if (amount && email && phone && address) {
+                            form.receipt.value = JSON.stringify({
+                                "Email": email,
+                                "Phone": phone,
+                                "Address": address,
+                                "EmailCompany": "modemoscowsup@gmail.com",
+                                "Taxation": "usn_income",
+                                "Items": [
+                                    {
+                                        "Name": name,
+                                        "Price": parseInt(amount * 100),
+                                        "Quantity": 1.00,
+                                        "Amount": parseInt(amount * 100),
+                                        "PaymentMethod": "full_payment",
+                                        "PaymentObject": "commodity",
+                                        "Tax": "none"
+                                    }
+                                ]
+                            });
+                            pay(form);
+                        } else alert("Не все обязательные поля заполнены")
+                        return false;
+                    }
+            </script>
+        </div>        
     </div>
 {% endblock %}
